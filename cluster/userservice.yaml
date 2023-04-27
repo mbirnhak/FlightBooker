@@ -29,11 +29,10 @@ metadata:
   labels:
     app: userservice
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: userservice
   ports:
   - name: rest
     port: 83
     targetPort: rest-port
-    nodePort: 30103

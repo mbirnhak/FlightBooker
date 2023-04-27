@@ -29,11 +29,10 @@ metadata:
   labels:
     app: payment
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: payment
   ports:
   - name: rest
     port: 84
     targetPort: rest-port
-    nodePort: 30106

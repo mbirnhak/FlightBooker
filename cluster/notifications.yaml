@@ -29,11 +29,10 @@ metadata:
   labels:
     app: notifications
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: notifications
   ports:
   - name: rest
     port: 87
     targetPort: rest-port
-    nodePort: 30104

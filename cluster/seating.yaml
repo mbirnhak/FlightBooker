@@ -29,11 +29,10 @@ metadata:
   labels:
     app: seating
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: seating
   ports:
   - name: rest
     port: 86
     targetPort: rest-port
-    nodePort: 30105

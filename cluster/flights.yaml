@@ -40,11 +40,10 @@ metadata:
   labels:
     app: flights
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: flights
   ports:
   - name: rest
     port: 81
     targetPort: rest-port
-    nodePort: 30108

@@ -29,11 +29,10 @@ metadata:
   labels:
     app: transactionservice
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: transactionservice
   ports:
   - name: rest
     port: 82
     targetPort: rest-port
-    nodePort: 30107
