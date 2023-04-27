@@ -1,0 +1,155 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: aggregator
+  name: aggregator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aggregator
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: aggregator
+    spec:
+      containers:
+      - name: aggregator
+        image: mbirnhak/aggregator:v1
+        env:
+          - name: Users
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users
+          - name: Users_Port
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users_Port
+          - name: Users_api_get
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users_api_get
+          - name: Users_api_add
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users_api_add
+          - name: Users_api_update
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users_api_update
+          - name: Users_api_delete
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users_api_delete
+          - name: Flights
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Flights
+          - name: Flights_Port
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Flights_Port
+          - name: Flights_api
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Flights_api
+          - name: Transactions
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Transactions
+          - name: Transactions_Port
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Transactions_Port
+          - name: Transactions_api
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Transactions_api
+          - name: Seats
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Seats
+          - name: Seats_Port
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Seats_Port
+          - name: Seats_api_get
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Seats_api_get
+          - name: Seats_api_update
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Seats_api_update
+          - name: Seats_api_add
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Seats_api_add
+          - name: Payments
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Payments
+          - name: Payments_Port
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Payments_Port
+          - name: Payments_api
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Payments_api
+          - name: Notifications
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Notifications
+          - name: Notifications_Port
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Notifications_Port
+          - name: Notifications_api
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Notifications_api
+        ports:
+        - containerPort: 8085
+          name: rest-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aggregator
+  labels:
+    app: aggregator
+spec:
+  type: NodePort
+  selector:
+    app: aggregator
+  ports:
+  - name: rest
+    port: 85
+    targetPort: rest-port
+    nodePort: 30102

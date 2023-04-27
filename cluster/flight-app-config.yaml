@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flight-app-config
+data:
+  Flights: flights
+  Flights_Port: "81"
+  Flights_api: flights
+  Flights_Kiwi: api.tequila.kiwi.com/v2
+  Kiwi_api_call: search
+  Seats: seating
+  Seats_Port: "86"
+  Seats_api_get: seats
+  Seats_api_add: add-seats
+  Seats_api_update: update-seats
+  Transactions: transactionservice
+  Transactions_Port: "82"
+  Transactions_api: add-transaction
+  Transactions_api_get: get-transaction
+  Users: userservice
+  Users_Port: "83"
+  Users_api_get: users
+  Users_api_add: add-user
+  Users_api_update: update-user
+  Users_api_delete: delete-user
+  Payments: payment
+  Payments_Port: "84"
+  Payments_api: api/p1/payments
+  Notifications: notifications
+  Notifications_Port: "87"
+  Notifications_api: notification-info
