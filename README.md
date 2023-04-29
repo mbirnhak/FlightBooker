@@ -39,9 +39,9 @@
         - Sends the user confirmation of payment, and their plane ticket
 
 # Estimated languages and frameworks
-  Languages: Java, Mongo, and SpringBoot
+  Languages: Java, Mongo, and Shell Script
   
-  Framework: Microservices
+  Framework: SpringBoot
 
 
 # Diagram:
