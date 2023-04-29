@@ -39,19 +39,9 @@
         - Sends the user confirmation of payment, and their plane ticket
 
 # Estimated languages and frameworks
-  Languages: Java, SQLite, and SpringBoot
+  Languages: Java, Mongo, and SpringBoot
   
   Framework: Microservices
 
-# UI description
-  -First UI that will show up is a page with a "WELCOME" message in the central part with the options to "SIGN UP", "SIGN IN" and "GUEST" on upper 
-  right corner;
-  
-  -"SIGN UP" UI displays spaces for the user to input "FIRST NAME", "SECOND NAME", "EMAIL ADDRESS", "PASSWORD"; 
-  
-  -"SIGN IN" UI display places for the user to input "EMAIL ADDRESS", "PASSWORD"; 
-  
-  -"GUEST" option takes user to main page;
-  
-  -"main page" UI will show the picture of a plane on the bottom part, and on top it will present a "SEARCH FLIGHTS" header followed by spaces for the    user to input information for "DEPARTURE AIRPORT", "DESTINATION AIRPORT", "DEPARTURE DATE" and a "SEARCH" button 
+
   
