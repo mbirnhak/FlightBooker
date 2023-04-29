@@ -6,39 +6,42 @@
 # Team members
   Matthew Birnhak and Bernardo Simoes
 
-# Estimated modules
+# Modules
   We will have a module (microservice) for the following areas:
   
-  - Front-end of the application 
-        - Deals with the user interface and connects to all other components of appciation
+  - Aggregator
+        - Connects to all other components of appciation and deals with user requests
 
 
   - Available planes
-        - Will either connect to a database to simulate real flights, or it will connect through an API to real time flight info
-        - Will get info on available planes based on the date and place of the input info
+        - Connects to Tequila Flights API
+        - Returns info on available flights based on the date, departure airport, and destination airport
 
 
   - Available seats
-        - Will either connect to a database to simulate real flights, or it will connect through an API to real time flight info
-        - Will get info on available seats within the flight chosen
+        - Gets info on available seats within the flight chosen
+        - Stores info in a database
 
 
-  - User service (connects to database)
-        - Will deal with the login, sign up, and guest information
+  - User service
+        - Deals with user information
+        - Stores info in database
 
 
-  - Transaction history (connects to database)
-        - Stores the users previous flight history and allows the user to view this info
+  - Transaction
+        - Stores the users previous flight purchases in a database
+        - Allows the user to view this info
+        - Allows the user to purchase new flights
 
 
-  - Payment (connects to database)
-        - Deals with the users payment for the ticket
+  - Payment
+        - Simulates dealing with the users credit card information
 
 
-  - Notifications (connects to database)
-        - Sends the user confirmation of payment, and their plane ticket
+  - Notifications
+        - Sends the user confirmation of payment and their plane ticket via email
 
-# Estimated languages and frameworks
+# Languages and Frameworks
   Languages: Java, Mongo, and Shell Script
   
   Framework: SpringBoot
