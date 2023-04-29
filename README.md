@@ -1,12 +1,12 @@
-1/2# Flight Booking Application
+# Flight Booking Application
 
-# Project application nature and purpose
+## Project application nature and purpose
   This project consists of an application that searches for available flights based on "leaving from", "going to" and "departure date", displays         available seats and allows the user to purchase a ticket, which will then be send to his/her email.
 
-# Team members
+## Team members
   Matthew Birnhak and Bernardo Simoes
 
-# Modules
+## Modules
   We will have a module (microservice) for the following areas:
   
   - Aggregator
@@ -41,13 +41,13 @@
   - Notifications
         - Sends the user confirmation of payment and their plane ticket via email
 
-# Languages and Frameworks
+## Languages and Frameworks
   Languages: Java, Mongo, and Shell Script
   
   Framework: SpringBoot
 
 
-# Diagram:
+## Diagram:
 <img width="919" alt="Screenshot 2023-04-29 at 3 04 54 PM" src="https://user-images.githubusercontent.com/123829531/235320232-fad47d85-62d2-4ba0-9439-4e17200d48e1.png">
 
   
