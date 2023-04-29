@@ -1,4 +1,4 @@
-# Flight Booking Application
+## Flight Booking Application
 
 # Project application nature and purpose
   This project consists of an application that searches for available flights based on "leaving from", "going to" and "departure date", displays         available seats and allows the user to purchase a ticket, which will then be send to his/her email.
