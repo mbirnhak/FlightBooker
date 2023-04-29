@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: flights
-        image: mbirnhak/flights:v1
+        image: ${APP_USER}/flights:v1
         env:
           - name: Flights_Kiwi
             valueFrom:

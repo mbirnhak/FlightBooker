@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: notifications
-        image: mbirnhak/notifications:v1
+        image: ${APP_USER}/notifications:v1
         ports:
         - containerPort: 8087
           name: rest-port

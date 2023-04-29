@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: aggregator
-        image: mbirnhak/aggregator:v1
+        image: ${APP_USER}/aggregator:v1
         env:
           - name: Users
             valueFrom:

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: userservice
-        image: mbirnhak/userservice:v1
+        image: ${APP_USER}/userservice:v1
         ports:
         - containerPort: 8083
           name: rest-port
