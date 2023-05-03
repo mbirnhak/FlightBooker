@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: transactionservice
-        image: ${APP_USER}/transactionservice:v1
+        image: mbirnhak/transactionservice:v1
         ports:
         - containerPort: 8082
           name: rest-port
@@ -55,10 +55,11 @@ metadata:
   labels:
     app: transactionservice
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: transactionservice
   ports:
   - name: rest
     port: 82
     targetPort: rest-port
+    nodePort: 30109
