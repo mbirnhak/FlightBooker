@@ -51,7 +51,7 @@ public class AggregatorRestController {
         if(user == null){
             return "USER NOT FOUND";
         }
-        return "USERNAME: " + user.getUsername() + "\nPASSWORD: " + user.getPassword() + "\n";
+        return "USERNAME: " + user.getUsername() + "\nPASSWORD: " + user.getPassword() + "\nEMAIL: " + user.getEmail() + "\n";
     }
 
     @PostMapping(value = "/add-user", consumes = {"application/json"}, produces = {"application/json"} )

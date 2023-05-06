@@ -1,19 +1,18 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
 
-
-@Entity
-@Table(name = "users")
+@Document
 public class User{
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    @Id
+    private String Id;
+
+    @Indexed(unique = true)
     private String username;
+    
     private String password;
     private String email;
 
@@ -25,10 +24,10 @@ public class User{
         this.email = email;
     }
 
-    public Integer getId(){
+    public String getId(){
         return Id;
     }
-    public void setId(Integer value){
+    public void setId(String value){
         Id = value;
     }
 

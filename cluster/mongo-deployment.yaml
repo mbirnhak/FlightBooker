@@ -10,7 +10,6 @@ spec:
     targetPort: 27017
   selector:
     app: mongo
-  clusterIP: None  # We Use DNS, Thus ClusterIP is not relevant
     
 ---
 apiVersion: v1
@@ -22,7 +21,7 @@ metadata:
     tier: database
 spec:
   accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi    #This will tell kubernetes about the amount of space we are trying to claim.
@@ -44,28 +43,14 @@ spec:
         app: mongo
       name: mongodb-service
 
-      
     spec:
       containers:
       - image: mongo:latest
         name: mongo
-        
-        env:
-          - name: MONGO_INITDB_ROOT_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: mongo-secret
-                key: username
-          - name: MONGO_INITDB_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mongo-secret
-                key: password
-                          
                 
         ports:
         - containerPort: 27017
-          name: mongo                
+          name: mongo
         volumeMounts:
         - name: mongo-persistent-storage
           mountPath: /data/db #This is the path in the container on which the mounting will take place.

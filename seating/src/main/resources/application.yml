@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: seating
+    data:
+        mongodb:
+            uri: mongodb://${MONGO_HOST}:${MONGO_PORT}/${SEATING_MONGO_DB}

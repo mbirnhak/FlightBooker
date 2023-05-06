@@ -21,6 +21,22 @@ spec:
         ports:
         - containerPort: 8083
           name: rest-port
+        env:
+            - name: USER_MONGO_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: flight-app-config  
+                  key: USER_MONGO_DB
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: flight-app-config 
+                  key: MONGO_HOST
+            - name: MONGO_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: flight-app-config 
+                  key: MONGO_PORT 
 ---
 apiVersion: v1
 kind: Service

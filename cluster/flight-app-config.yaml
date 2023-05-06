@@ -29,7 +29,8 @@ data:
   Notifications: notifications
   Notifications_Port: "87"
   Notifications_api: notification-info
-  MONGO_DB: my-mongodb
   MONGO_HOST: mongodb-service
-  MONGO_AUTH_DB: admin
   MONGO_PORT: "27017"
+  MONGO_DB: transaction-db
+  USER_MONGO_DB: user-db
+  SEATING_MONGO_DB: seating-db

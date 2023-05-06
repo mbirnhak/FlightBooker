@@ -4,4 +4,4 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import edu.trincoll.transactionhistory.models.Transaction;
 
-public interface TransactionRepository extends MongoRepository<Transaction, Integer> {}
+public interface TransactionRepository extends MongoRepository<Transaction, String> {}

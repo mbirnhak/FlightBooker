@@ -16,10 +16,6 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionservice;
 
-    public TransactionController(TransactionService service) {
-        this.transactionservice = service;
-    }
-
     @GetMapping("/get-transactions")
     public List<Transaction> getTransaction(){
         return transactionservice.getAllTransactions();
