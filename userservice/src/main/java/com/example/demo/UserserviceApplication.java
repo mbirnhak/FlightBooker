@@ -23,10 +23,12 @@ public class UserserviceApplication {
 			User User1 = new User("bennysimoes", "administrator", "bernardo.simoes@northwoodschool.com");
 			User User2 = new User("mattbirnhak", "administrator", "mrbirnhak@gmail.com");
 
+			System.out.println("Size before: " + repo.count());
 			if(repo.count() == 0){
 				repo.insert(User1);
 				repo.insert(User2);
 			}
+			System.out.println("Size after: " + repo.count());
 		};
 	}
 }

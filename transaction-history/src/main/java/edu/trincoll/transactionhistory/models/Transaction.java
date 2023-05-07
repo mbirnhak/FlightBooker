@@ -80,7 +80,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "ID:" + Id + ", USERNAME:" + username + ", FLIGHT ID:" + flight_id + ", NUMBER OF TICKETS BOUGHT:"
+        return "USERNAME:" + username + ", FLIGHT ID:" + flight_id + ", NUMBER OF TICKETS BOUGHT:"
                 + num_tickets_bought + ", DATE OF ORDER:" + date_of_order + ", PRICE:$" + price;
     }
 }

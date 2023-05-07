@@ -1,22 +1,9 @@
 package edu.trin.aggregator.Aggregator.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "seats")
 public class Seat {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private Integer flight_no;
     private String date;
-    @Lob
     private String seats_display;
     private Integer available_seats;
 
@@ -27,14 +14,6 @@ public class Seat {
         this.date = date;
         this.seats_display = serializeSeats(seats_display);
         this.available_seats = available_seats;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getFlight_no() {
@@ -69,7 +48,7 @@ public class Seat {
         this.available_seats = available_seats;
     }
 
-    private String serializeSeats(String[][] seats) {
+    public String serializeSeats(String[][] seats) {
         if (seats == null || seats.length == 0) {
             return "";
         }
@@ -86,7 +65,7 @@ public class Seat {
         return sb.toString();
     }
 
-    private String[][] deserializeSeats(String seatsString) {
+    public String[][] deserializeSeats(String seatsString) {
         if (seatsString == null || seatsString.isEmpty()) {
             return new String[0][0];
         }

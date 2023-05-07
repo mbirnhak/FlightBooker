@@ -51,11 +51,13 @@ public class UserService {
 
    public String deleteUser(String username, String password){
     User user = this.getUserByUsername(username);
-
+    
     if(user != null && user.getPassword().equals(password)){
         repository.delete(user);
+        System.out.println("after delete statement");
 
         if(this.getUserByUsername(username) == null){
+            System.out.println("after if statement");
             return "YOU HAVE SUCCESSFULY DELETED YOUR ACCOUNT. WE ARE SAD YOU ARE NO LONGER WITH US!";
         }
     }

@@ -43,7 +43,7 @@ public class UserService {
         RestTemplate restTemplate = new RestTemplate();
         String urlName = System.getenv("Users") != null ? System.getenv("Users") : "localhost";
         String port = System.getenv("Users_Port") != null ? System.getenv("Users_Port") : "8083";
-        String api = System.getenv("Users_api_add") != null ? System.getenv("Users_api_get") : "add-user";
+        String api = System.getenv("Users_api_add") != null ? System.getenv("Users_api_add") : "add-user";
         String url = String.format("http://%s:%s/%s", urlName, port, api);
         
         HttpHeaders headers = new HttpHeaders();

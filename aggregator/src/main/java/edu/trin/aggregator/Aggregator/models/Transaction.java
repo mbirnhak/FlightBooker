@@ -3,21 +3,21 @@ package edu.trin.aggregator.Aggregator.models;
 import java.util.Date;
 
 public class Transaction {
-    
+
     private String username;
     private Integer flight_id;
     private Integer num_tickets_bought;
     private Date date_of_order;
-    private Double total_price;
+    private double price;
 
     public Transaction() {}
 
-    public Transaction(String username, Integer flight_id, Integer num_tickets_bought, Double price) {
+    public Transaction(String username, Integer flight_id, Integer num_tickets_bought, double price) {
         this.username = username;
         this.flight_id = flight_id;
         this.num_tickets_bought = num_tickets_bought;
         this.date_of_order = new Date();
-        this.total_price = price;
+        this.price = price;
     }
 
     public String getUsername() {
@@ -52,17 +52,17 @@ public class Transaction {
         this.date_of_order = date_of_order;
     }
 
-    public Double getPrice() {
-        return total_price;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrice(Double price) {
-        this.total_price = price;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
         return "USERNAME:" + username + ", FLIGHT ID:" + flight_id + ", NUMBER OF TICKETS BOUGHT:"
-                + num_tickets_bought + ", DATE OF ORDER:" + date_of_order + ", TOTAL PRICE:$" + total_price;
+                + num_tickets_bought + ", DATE OF ORDER:" + date_of_order + ", PRICE:$" + price;
     }
 }

@@ -1,6 +1,7 @@
 package edu.trin.aggregator.Aggregator.models;
 
-public class User {
+public class User{
+
     private String username;
     private String password;
     private String email;
@@ -12,7 +13,7 @@ public class User {
         this.password = password;
         this.email = email;
     }
- 
+
     public String getUsername(){
         return username;
     }
@@ -26,13 +27,13 @@ public class User {
     public void setPassword(String value){
         password = value;
     }
-    
     public String getEmail(){
         return email;
     }
     public void setEmail(String value){
         email = value;
     }
+
    
     @Override
     public String toString() {

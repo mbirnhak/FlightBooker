@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 public class User{
 
     @Id
-    private String Id;
+    private String id;
 
     @Indexed(unique = true)
     private String username;
@@ -25,10 +25,10 @@ public class User{
     }
 
     public String getId(){
-        return Id;
+        return id;
     }
     public void setId(String value){
-        Id = value;
+        id = value;
     }
 
     public String getUsername(){
