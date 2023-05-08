@@ -51,3 +51,11 @@
 <img width="919" alt="Screenshot 2023-04-29 at 3 04 54 PM" src="https://user-images.githubusercontent.com/123829531/235320232-fad47d85-62d2-4ba0-9439-4e17200d48e1.png">
 
   
+## To Build the App
+cd Kata-Project && cd cluster && chmod +x build-app.sh && ./build-app.sh build DOCKER_HUB_USERNAME
+
+## To Deploy the App on Kubernetes
+chmod +x apply-yaml.sh && ./apply-yaml.sh DOCKER_HUB_USERNAME
+
+## Curl Commands
+see Flight_App_Curl_Commands.pdf for allowed curl commands

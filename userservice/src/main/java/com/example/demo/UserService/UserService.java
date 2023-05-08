@@ -30,6 +30,9 @@ public class UserService {
    }
 
    public String createUser(User user){
+    if(getUserByUsername(user.getUsername()) != null){
+        return "USERNAME ALREADY EXISTS. PICK ANOTHER USERNAME";
+    }
     repository.save(user);
     return "WELCOME TO OUR WEBSITE " + user.getUsername();
    }

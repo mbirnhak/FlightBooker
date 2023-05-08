@@ -56,6 +56,9 @@ public class UserService {
         if(findUser(user.getUsername()) == null){
             return "OPERATION FAILED";
         }
+        if(response.getBody().equals("USERNAME ALREADY EXISTS. PICK ANOTHER USERNAME")){
+            return response.getBody();
+        }
         return "USER ADDED SUCCESSFULY";
     }
 

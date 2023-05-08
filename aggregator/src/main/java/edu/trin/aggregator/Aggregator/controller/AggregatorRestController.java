@@ -29,19 +29,6 @@ public class AggregatorRestController {
     @GetMapping("/users")
     public List<User> getUsers(){
         List<User> users = userservice.findAll();
-        /**List<String> stringArray = new ArrayList<String>();
-        
-        if (users.size() == 0){
-            String str = "THERE ARE NO USERS AT THE MOMENT";
-            stringArray.add(str);
-            return stringArray;
-        }
-        for (int i=0;i<users.size();i++){
-            String username = users.get(i).getUsername();
-            String password = users.get(i).getPassword();
-            String str = "USERNAME: "+username+"\nPASSWORD: "+password+"\n";
-            stringArray.add(str);
-        }*/
         return users;
     }
 
