@@ -52,10 +52,10 @@
 
   
 ## To Build the App
-cd Kata-Project && cd cluster && chmod +x build-app.sh && ./build-app.sh build DOCKER_HUB_USERNAME
+'cd Kata-Project && cd cluster && chmod +x build-app.sh && ./build-app.sh build DOCKER_HUB_USERNAME'
 
 ## To Deploy the App on Kubernetes
-chmod +x apply-yaml.sh && ./apply-yaml.sh DOCKER_HUB_USERNAME
+'chmod +x apply-yaml.sh && ./apply-yaml.sh DOCKER_HUB_USERNAME'
 
 ## Curl Commands
-see Flight_App_Curl_Commands.pdf for allowed curl commands
+'see Flight_App_Curl_Commands.pdf for allowed curl commands'
