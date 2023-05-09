@@ -18,9 +18,6 @@ spec:
       containers:
       - name: seating
         image: ${APP_USER}/seating:v1
-        ports:
-        - containerPort: 8086
-          name: rest-port
         env:
             - name: SEATING_MONGO_DB
               valueFrom:
@@ -37,6 +34,15 @@ spec:
                   configMapKeyRef:
                     name: flight-app-config 
                     key: MONGO_PORT
+        ports:
+        - containerPort: 8086
+          name: rest-port
+        resources:
+          limits:
+            memory: "256Mi"
+          requests:
+            memory: "128Mi"
+        
 ---
 apiVersion: v1
 kind: Service

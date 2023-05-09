@@ -21,6 +21,11 @@ spec:
         ports:
         - containerPort: 8087
           name: rest-port
+        resources:
+          limits:
+            memory: "256Mi"
+          requests:
+            memory: "128Mi"
 ---
 apiVersion: v1
 kind: Service
