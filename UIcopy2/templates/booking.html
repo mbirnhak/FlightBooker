@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Available Flights</title>
+    <style>
+		body {
+		  background-image: url("/static/Plane.png");
+		  background-size: cover;
+		  background-position: center center;
+		  font-family: Arial, sans-serif;
+		  color: rgb(0, 0, 0);
+		}
+	  
+		table {
+		  margin-top: 50px;
+		  border-collapse: collapse;
+		  width: 80%;
+		  margin: 50px auto;
+		  background-color: #f2f2f2;
+		  border: 2px solid #ddd;
+		  font-size: 18px;
+		  text-align: left;
+		}
+	  
+		th, td {
+		  border: 1px solid #ddd;
+		  padding: 12px;
+		  text-align: center;
+		  vertical-align: middle;
+		}
+	  
+		th {
+		  background-color: #d45725;
+		  color: white;
+		}
+	  
+		tr:hover {
+		  background-color: #f5f5f5;
+		}
+	  
+		h1 {
+		  font-size: 38px;
+		  text-align: center;
+		  margin-top: 30px;
+		}
+	  
+		h2 {
+		  font-size: 38px;
+		  text-align: center;
+		  margin-top: 30px;
+		}
+	  
+		.seats-section {
+		  margin-top: 50px;
+		  text-align: center;
+		}
+	  
+		.seats-table {
+		  margin: 0 auto;
+		  width: 50%;
+		  border-collapse: collapse;
+		}
+	  
+		.seats-table th,
+		.seats-table td {
+		  padding: 10px;
+		  border: 1px solid #ddd;
+		}
+	  
+		.seats-table th {
+		  background-color: #d45725;
+		  color: white;
+		}
+	  
+		.no-seats {
+		  font-size: 32px;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  height: 300px; /* adjust this to your desired size */
+		  background-color: white;
+		  border: 2px solid black;
+		  margin: 0 auto;
+		  width: 50%;
+		}
+	  
+		.selected-seat {
+		  background-color: #d45725;
+		  color: white;
+		}
+	  
+		.container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+		box-sizing: border-box;
+		}
+
+		.payment-box {
+		flex-basis: calc(50% - 20px);
+		max-width: calc(50% - 20px);
+		margin: 20px 0 20px auto;
+		padding: 20px;
+		background-color: #f9f9f9;
+		border-radius: 5px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+
+		.payment-box h2 {
+		margin-top: 0;
+		font-size: 24px;
+		}
+
+		.payment-box label {
+		display: block;
+		margin-bottom: 10px;
+		font-weight: bold;
+		}
+
+		.payment-box input[type="text"],
+		.payment-box select {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		box-sizing: border-box;
+		}
+
+		.payment-box input[type="submit"] {
+		display: block;
+		margin-left: auto;
+		padding: 10px 20px;
+		background-color: #d45725;
+		color: white;
+		font-size: 18px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		}
+
+		.payment-box input[type="submit"]:hover {
+		background-color: #bf431c;
+		}
+
+
+	  
+		.seats-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center; /* add this line */
+		align-items: center; /* add this line */
+		}
+
+		.seats-row {
+		display: flex;
+		justify-content: center;
+		margin: 10px 0;
+		}
+
+		.seat-box {
+		border: 2px solid #aaa;
+		border-radius: 8px;
+		padding: 16px;
+		margin: 0 8px 8px 0;
+		background-color: #fff;
+		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+		transition: background-color 0.3s ease-in-out;
+		}
+
+		.seat-box:hover {
+		background-color: #f2f2f2;
+		}
+
+		.seat-box:active {
+		transform: translateY(2px);
+		box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+		}
+
+	  </style>
+  </head>
+  <body>
+    <h1>Your Flight</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Flight No</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Departure Time</th>
+          <th>Price</th>
+          <th>Available Seats</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ result.flightNo }}</td>
+          <td>{{ result.flyFrom }}</td>
+          <td>{{ result.flyTo }}</td>
+          <td>{{ result.localDeparture }}</td>
+          <td>{{ result.price }}</td>
+          <td>{{ result.available_seats }}</td>
+        </tr>
+      </tbody>
+    </table>
+	<h2>Seat Availability</h2>
+	{% if result2 %}
+	<div class="seats-container">
+	  <table>
+		<thead>
+		  <tr>
+			<th>Row</th>
+			<th colspan="{{ result2.0|length }}">Seats</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  {% for row in result2 %}
+			<tr>
+			  <td>{{ loop.index }}</td>
+			  {% for seat in row %}
+				{% if seat == 'X' %}
+				  <td>X</td>
+				{% else %}
+				  <td><label for="{{ loop.index }}-{{ seat }}"><input type="checkbox" id="{{ loop.index }}-{{ seat }}" name="seats[]" value="{{ loop.index }}-{{ seat }}">{{ seat }}</label></td>
+				{% endif %}
+			  {% endfor %}
+			</tr>
+		  {% endfor %}
+		</tbody>
+	  </table>
+	</div>
+	<div id="seats-selected"></div>
+	<button><a href="/route_payment" onclick="submitForm()">Proceed to Payment</a></button>
+	{% else %}
+	<div class="no-seats">
+	  <p>No seats available</p>
+	</div>
+	{% endif %}
+	
+	<script>
+	  function submitForm(event) {
+		event.preventDefault();
+		var form = document.getElementById("seats-form");
+		var checkedBoxes = form.querySelectorAll('input[type="checkbox"]:checked');
+		if (checkedBoxes.length === 0) {
+		  alert("Please select at least one seat");
+		} else {
+		  var selectedSeats = [];
+		  checkedBoxes.forEach(function(checkbox) {
+			selectedSeats.push(checkbox.value);
+		  });
+		  localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+	  
+		  // Redirect to route_payment
+		  window.location.href = "/route_payment";
+		}
+	  }
+	
+	  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+	  checkboxes.forEach(function(checkbox) {
+		if (checkbox.disabled) {
+		  checkbox.parentElement.innerHTML = "X";
+		} else {
+		  checkbox.addEventListener('click', function() {
+			var checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+			document.getElementById("seats-selected").innerHTML = checkedCount + " seat(s) selected";
+		  });
+		}
+	  });
+	</script>
+
+</body>
+</html>

@@ -33,6 +33,11 @@ public class UserRestController {
         return userservice.getUserByUsername(username1);
     }
 
+    @GetMapping("/check-user/{username}/{password}")
+    public Boolean checkUser(@PathVariable String username, @PathVariable String password){
+        return userservice.checkUser(username, password);
+    }
+
     @PostMapping(value = "/add-user", consumes = {"application/json"})
     public String createUser(@RequestBody User user){
         return userservice.createUser(user);

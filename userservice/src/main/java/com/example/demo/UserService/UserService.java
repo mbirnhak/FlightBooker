@@ -29,6 +29,20 @@ public class UserService {
         return null;
    }
 
+   public Boolean checkUser(String username, String password){
+    User user = getUserByUsername(username);
+   
+    if(user == null){
+        return false;
+    }
+
+    if(user.getPassword().equals(password)){
+        return true;
+    }
+
+    return false;
+   }
+
    public String createUser(User user){
     if(getUserByUsername(user.getUsername()) != null){
         return "USERNAME ALREADY EXISTS. PICK ANOTHER USERNAME";

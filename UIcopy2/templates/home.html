@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <style>
+      body {
+        background-image: url("/static/Plane.png");
+        background-size: cover;
+        background-position: center center;
+        font-family: Arial, sans-serif;
+        color: rgb(0, 0, 0);
+      }
+      
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin-top: 100px;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+      
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+      }
+      
+      .box {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        margin: 10px;
+        width: 400px;
+        height: 300px;
+      }
+      
+      .box:nth-child(3), .box:nth-child(4) {
+        margin-top: 50px;
+      }
+      
+      form {
+        margin-top: 30px;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+      input[type="text"], input[type="password"], input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      input[type="submit"] {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #d45725;
+        color: white;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      input[type="submit"]:hover {
+        background-color: #d45725;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>TRAVEL THE WORLD WITH EASE, ANYTIME!</h1>
+    <h2>We Cannot Guarantee You Will Make it There Safely!</h2>
+    <div class="container">
+      <div class="box">
+        <form action="/add_user" method="POST">
+          <h2>Add User</h2>
+          {% if ERROR %}
+          <p style="color: red;">{{ ERROR }}</p>
+          {% endif %}
+          <label for="username">Username:</label>
+          <input type="text" name="username" required>
+          <label for="password">Password:</label>
+          <input type="password" name="password" required>
+          <label for="email">Email:</label>
+          <input type="email" name="email" required>
+          <input type="submit" value="Add User">
+        </form>
+      </div>
+      <div class="box">
+        <form action="{{ url_for('login') }}" method="post">
+          <h2>Login</h2>
+          {% if error %}
+          <p style="color: red;">{{ error }}</p>
+          {% endif %}
+          <label for="username">Username:</label>
+          <input type="text" name="username" required>
+          <label for="password">Password:</label>
+          <input type="password" name="password" required>
+          <input type="submit" value="Log In">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

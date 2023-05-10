@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Flights</title>
+    <style>
+        body {
+            background-image: url("/static/Plane.png");
+            background-size: cover;
+            background-position: center center;
+            font-family: Arial, sans-serif;
+            color: rgb(0, 0, 0);
+        }
+       
+        table {
+            margin-top: 50px;
+            border-collapse: collapse;
+            width: 80%;
+            margin: 50px auto;
+            background-color: #f2f2f2;
+            border: 2px solid #ddd;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #d45725;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+       
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Flights</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Flight No</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure Time</th>
+                <th>Price</th>
+                <th>Available Seats</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in result %}
+                <tr>
+                    <td><a href="{{ url_for('flight_description', flyFrom=flight.flyFrom, flyTo=flight.flyTo, flight_no=flight.flightNo, price=flight.price, departure_date=flight.localDeparture, available_seats=flight.available_seats) }}">{{ flight.flightNo }}</a></td>
+                    <td>{{ flight.flyFrom }}</td>
+                    <td>{{ flight.flyTo }}</td>
+                    <td>{{ flight.localDeparture }}</td>
+                    <td>{{ flight.price }}</td>
+                    <td>{{ flight.available_seats }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

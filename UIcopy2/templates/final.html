@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Status</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            color: #333;
+        }
+
+        .status-block {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 24px;
+            color: #333;
+        }
+       
+        .success {
+            color: green;
+            font-size: 24px;
+        }
+
+        .error {
+            color: red;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin-top: 50px;
+        }
+
+        table {
+            margin: 0 auto;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Transaction Status</h1>
+    <div class="status-block">
+        {{ result }}
+    </div>
+
+    <h2>Transaction History</h2>
+    <table>
+        <tr>
+            <th>Flight ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Number of Tickets</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction['FLIGHT ID'] }}</td>
+            <td>{{ transaction['DATE OF ORDER'] }}</td>
+            <td>{{ transaction['PRICE'] }}</td>
+            <td>{{ transaction['NUMBER OF TICKETS BOUGHT'] }}</td>
+        </tr>
+        {% endfor %}    
+    </table>
+    <button onclick="window.location.href='/logout'" style="position: fixed; bottom: 20px; right: 20px; padding: 10px; background-color: #d45725; color: white; font-size: 1.2rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Logout</button>
+</body>
+</html>

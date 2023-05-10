@@ -21,18 +21,19 @@ public class FlightsRestController {
     }
 
     @GetMapping("/flights/{fly_from}/{fly_to}/{date}")
-    public String getFlights(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date) {
+    public List<Flights> getFlights(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date) {
         List<Flights> flight_list = service.getAllFlights(fly_from, fly_to, date);
+        return flight_list;
 
-        String output = "";
-        int counter = 1;
+        // String output = "";
+        // int counter = 1;
 
-        for(Flights flight : flight_list){
-            output = output + "FLIGHT " + counter + ":\n" + "FLIGHT INFO: " + flight.toString() + "\n\n";
-            counter ++;
-        }
+        // for(Flights flight : flight_list){
+        //     output = output + "FLIGHT " + counter + ":\n" + "FLIGHT INFO: " + flight.toString() + "\n\n";
+        //     counter ++;
+        // }
 
-        return output;
+        // return output;
     }
 
     //can be used to choose flight based on flight number and price

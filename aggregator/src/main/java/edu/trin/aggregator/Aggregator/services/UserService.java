@@ -39,6 +39,17 @@ public class UserService {
         return user;
     }
 
+    public Boolean checkUser(String username, String password){
+        String urlName = System.getenv("Users") != null ? System.getenv("Users") : "localhost";
+        String port = System.getenv("Users_Port") != null ? System.getenv("Users_Port") : "8083";
+        String api = System.getenv("Users_check") != null ? System.getenv("Users_check") : "check-user";
+        String url = String.format("http://%s:%s/%s/%s/%s", urlName, port, api, username, password);
+        RestTemplate restTemplate = new RestTemplate();
+        Boolean response = restTemplate.getForObject(url,Boolean.class);
+
+        return response;
+    }
+
     public String addUser(User user){
         RestTemplate restTemplate = new RestTemplate();
         String urlName = System.getenv("Users") != null ? System.getenv("Users") : "localhost";

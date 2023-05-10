@@ -7,7 +7,7 @@ WORKDIR /flights
 COPY build/libs/flights-0.0.1-SNAPSHOT.jar Flights.jar
 
 # Expose the port
-EXPOSE 8081
+EXPOSE 8089
 
 # Set the entry point
 ENTRYPOINT ["java", "-jar", "Flights.jar"]

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Flight</title>
+    <style>
+        body {
+            background-image: url("/static/Plane.png");
+            background-size: cover;
+            background-position: center center;
+            font-family: Arial, sans-serif;
+            color: rgb(0, 0, 0);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        label {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.25);
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose Your Flight</h1>
+    <form action="/choose-flight" method="post">
+        <label for="departure_airport">Departure Airport:</label>
+        <input type="text" name="departure_airport" id="departure_airport" required>
+        <label for="arrival_airport">Arrival Airport:</label>
+        <input type="text" name="arrival_airport" id="arrival_airport" required>
+        <label for="departure_date">Departure Date:</label>
+        <input type="date" name="departure_date" id="departure_date" required>
+        <input type="submit" value="Search Flights">
+    </form>
+</body>
+</html>

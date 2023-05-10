@@ -41,6 +41,11 @@ public class AggregatorRestController {
         return "USERNAME: " + user.getUsername() + "\nPASSWORD: " + user.getPassword() + "\nEMAIL: " + user.getEmail() + "\n";
     }
 
+    @GetMapping("/check-user/{username}/{password}")
+    public Boolean checkUser(@PathVariable String username, @PathVariable String password){
+        return userservice.checkUser(username, password);
+    }
+
     @PostMapping(value = "/add-user", consumes = {"application/json"}, produces = {"application/json"} )
     public String addUser(@RequestBody User user){
         return userservice.addUser(user);
@@ -60,18 +65,20 @@ public class AggregatorRestController {
     private FlightsService flightservice;
 
     @GetMapping("/flights/{fly_from}/{fly_to}/{date}")
-    public String getFlights(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date) {
+    public List<Flights> getFlights(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date) {
         return flightservice.getFlights(fly_from, fly_to, date);
     }
 
     //can be used to choose flight based on id
     @GetMapping("/flights/{fly_from}/{fly_to}/{date}/{flight_no}/{price}")
-    public String findFlight(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date, @PathVariable Integer flight_no, @PathVariable Integer price){
+    public Flights findFlight(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date, @PathVariable Integer flight_no, @PathVariable Integer price){
         Flights flight = flightservice.getFlightBySpecifics(fly_from, fly_to, date, flight_no, price);
-        if(flight == null){
-            return "THE FLIGHT DOESN'T EXIST";
-        }
-        return flight.toString();
+        return flight;
+
+        // if(flight == null){
+        //     return "THE FLIGHT DOESN'T EXIST";
+        // }
+        // return flight.toString();
     }
 
     @Autowired
@@ -90,9 +97,9 @@ public class AggregatorRestController {
     @Autowired
     private SeatsService seatsservice;
 
-    @GetMapping("/get-seating/{fly_from}/{fly_to}/{date}/{flight_no}/{price}")
-    public String getSeatDisplay(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date, @PathVariable Integer flight_no, @PathVariable Integer price){
-        return seatsservice.DisplaySeats(fly_from, fly_to, date, flight_no, price);
+    @GetMapping("/get-seating/{fly_from}/{fly_to}/{date}/{flight_no}/{price}/{available_seats}")
+    public String[][] getSeatDisplay(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date, @PathVariable Integer flight_no, @PathVariable Integer price, @PathVariable Integer available_seats){
+        return seatsservice.DisplaySeats(fly_from, fly_to, date, flight_no, price, available_seats);
     }
 
     @PostMapping("/new-order/{username}/{num_tickets}/{fly_from}/{fly_to}/{date}/{flight_no}/{seat_choice}/{price}")
