@@ -3,6 +3,8 @@ from datetime import datetime
 import requests
 import json
 import ast
+import os
+
 
 app = Flask(__name__)
 
@@ -26,7 +28,11 @@ def add_user():
 
         user_json = json.dumps(user_data)
 
-        url = 'http://localhost:8085/add-user'
+        aggregator = os.environ.get('AGGREGATOR', 'localhost')
+        port = os.environ.get('KUBERNETES_PORT', '8085')
+        api = os.environ.get('Users_api_add', 'add-user')
+
+        url = f'http://{aggregator}:{port}/{api}'
         headers = {'Content-Type': 'application/json'}
         response = requests.post(url, headers=headers, data=user_json)
 
@@ -43,7 +49,12 @@ def add_user():
 
 @app.route('/users')
 def users():
-    response = requests.get('http://localhost:8085/users')
+    aggregator = os.environ.get('AGGREGATOR', 'localhost')
+    port = os.environ.get('KUBERNETES_PORT', '8085')
+    api = os.environ.get('Users_api_get', 'users')
+
+    url = f'http://{aggregator}:{port}/{api}'
+    response = requests.get(url)
     users = response.json()
     return render_template('info_result.html', users=users)
 
@@ -56,7 +67,11 @@ def login():
         password = request.form['password']
         
         # Make a REST call to check login credentials
-        url = f'http://localhost:8085/check-user/{username1}/{password}'
+        aggregator = os.environ.get('AGGREGATOR', 'localhost')
+        port = os.environ.get('KUBERNETES_PORT', '8085')
+        api = os.environ.get('Check_User', 'check-user')
+
+        url = f'http://{aggregator}:{port}/{api}/{username1}/{password}'
         response = requests.get(url)
         print(response)
         if response.status_code == 200:
@@ -85,7 +100,11 @@ def choose_flight():
         arrival_airport = request.form['arrival_airport']
         departure_date = request.form['departure_date']
 
-        url = f'http://localhost:8085/flights/{departure_airport}/{arrival_airport}/{departure_date}'
+        aggregator = os.environ.get('AGGREGATOR', 'localhost')
+        port = os.environ.get('KUBERNETES_PORT', '8085')
+        api = os.environ.get('Flights_api', 'flights')
+
+        url = f'http://{aggregator}:{port}/{api}/{departure_airport}/{arrival_airport}/{departure_date}'
 
         response = requests.get(url)
         result = response.json()
@@ -111,7 +130,11 @@ def flight_description(flyFrom, flyTo, flight_no, price, departure_date, availab
 
     flight = get_flight_details(flyFrom, flyTo, flight_no, price, departure_date)
 
-    url = f'http://localhost:8085/get-seating/{flyFrom}/{flyTo}/{output_string}/{flight_no}/{price}/{available_seats}'     
+    aggregator = os.environ.get('AGGREGATOR', 'localhost')
+    port = os.environ.get('KUBERNETES_PORT', '8085')
+    api = os.environ.get('SEATS_DISPLAY_API', 'get-seating')
+
+    url = f'http://{aggregator}:{port}/{api}/{flyFrom}/{flyTo}/{output_string}/{flight_no}/{price}/{available_seats}'   
     response2 = requests.get(url)
 
     global departure_airport
@@ -181,16 +204,25 @@ def make_payment():
         num_seats = len(seats_list)
         seats_combined = ",".join(seats_list)
 
+        print(num_seats)
+        print(seats_combined)
+
         payment_json = json.dumps(payment_data)
 
         # Make a REST call to create a new transaction
 
-        url = f'http://localhost:8085/new-order/{username1}/{num_seats}/{departure_airport}/{arrival_airport}/{date_departure}/{flight_number}/{seats_combined}/{cost_per_ticket}'
+        aggregator = os.environ.get('AGGREGATOR', 'localhost')
+        port = os.environ.get('KUBERNETES_PORT', '8085')
+        api = os.environ.get('ORDER_API', 'new-order')
+
+        url = f'http://{aggregator}:{port}/{api}/{username1}/{num_seats}/{departure_airport}/{arrival_airport}/{date_departure}/{flight_number}/{seats_combined}/{cost_per_ticket}'   
 
         headers = {'Content-Type': 'application/json'}
         response = requests.post(url, headers=headers, data=payment_json)
 
-        url2 = f'http://localhost:8085/get-transaction/{username1}'
+        api2 = os.environ.get('Transactions_api_get', 'get-transaction')
+
+        url2 = f'http://{aggregator}:{port}/{api2}/{username1}'
         response2 = requests.get(url2)
         transactions = []
         for transaction_str in response2.json():

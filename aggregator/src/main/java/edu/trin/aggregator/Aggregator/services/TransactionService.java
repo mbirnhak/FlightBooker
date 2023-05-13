@@ -27,7 +27,7 @@ public class TransactionService {
    public List<Transaction> getAllTransactions(){
     String urlName = System.getenv("Transactions") != null ? System.getenv("Transactions") : "localhost";
     String port = System.getenv("Transactions_Port") != null ? System.getenv("Transactions_Port") : "8082";
-    String api = System.getenv("Transactions_api") != null ? System.getenv("Transactions_api") : "add-transaction";
+    String api = System.getenv("Transactions_api") != null ? System.getenv("Transactions_api") : "get-transactions";
     String url = String.format("http://%s:%s/%s", urlName, port, api);
     RestTemplate restTemplate = new RestTemplate();
     List<Transaction> transactions = restTemplate.getForObject(url, List.class);
@@ -47,23 +47,12 @@ public class TransactionService {
 
    public ResponseEntity<String> createTransaction(Payment payment, String username, Integer num_tickets, String fly_from, String fly_to, String date, Integer flight_no, String seat_choice, Integer price){
     
-    // String urlName = System.getenv("Flights") != null ? System.getenv("Flights") : "localhost";
-    // String port = System.getenv("Flights_Port") != null ? System.getenv("Flights_Port") : "8089";
-    // String api = System.getenv("Flights_api") != null ? System.getenv("Flights_api") : "flights";
-    // String url = String.format("http://%s:%s/%s/%s/%s/%s/%d/%d", urlName, port, api, fly_from, fly_to, date, flight_no, price);
-    // RestTemplate restTemplate = new RestTemplate();
-    // Flights flight = restTemplate.getForObject(url, Flights.class);
-
     String url2Name = System.getenv("Users") != null ? System.getenv("Users") : "localhost";
     String port2 = System.getenv("Users_Port") != null ? System.getenv("Users_Port") : "8083";
     String api2 = System.getenv("Users_api_get") != null ? System.getenv("Users_api_get") : "users";
     String url2 = String.format("http://%s:%s/%s/%s", url2Name, port2, api2, username);
     RestTemplate restTemplate2 = new RestTemplate();
     User user = restTemplate2.getForObject(url2, User.class);
-
-    // if(flight == null){
-    //     return ResponseEntity.ok("THE FLIGHT YOU CHOOSE DOESN'T EXIST");
-    // }
 
     if(num_tickets < 1){
         return ResponseEntity.ok("TO PLACE AN ORDER PLEASE INSERT A VALID AMOUNT OF TICKETS");
@@ -77,7 +66,7 @@ public class TransactionService {
     RestTemplate restTemplate3 = new RestTemplate();
     String url3Name = System.getenv("Transactions") != null ? System.getenv("Transactions") : "localhost";
     String port3 = System.getenv("Transactions_Port") != null ? System.getenv("Transactions_Port") : "8082";
-    String api3 = System.getenv("Transactions_api") != null ? System.getenv("Transactions_api") : "add-transaction";
+    String api3 = System.getenv("Transactions_api_add") != null ? System.getenv("Transactions_api_add") : "add-transaction";
     String url3 = String.format("http://%s:%s/%s", url3Name, port3, api3);
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
@@ -92,10 +81,6 @@ public class TransactionService {
     String url7 = String.format("http://%s:%s/%s/%d/%s", url4Name, port4, api4, flight_no, date);
     RestTemplate restTemplate7 = new RestTemplate();
     Seat seat_transactions = restTemplate7.getForObject(url7, Seat.class);
-    
-    // if(flight.getAvailableSeats() == 0){
-    //     return ResponseEntity.ok("NO SEATS AVAILABLE");
-    // }
     
     if(seat_transactions == null){
         return ResponseEntity.ok("NEED TO CALL SEAT DISPLAY FIRST");

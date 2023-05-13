@@ -41,6 +41,10 @@ then
     chmod +x userservice-build-push.sh
     ./userservice-build-push.sh $2
     popd
+    pushd ../front-end
+    chmod +x ui-build-push.sh
+    ./ui-build-push.sh $2
+    popd
 
     set +e
     

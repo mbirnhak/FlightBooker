@@ -4,7 +4,7 @@ metadata:
   name: flight-app-config
 data:
   Flights: flights
-  Flights_Port: "81"
+  Flights_Port: "89"
   Flights_api: flights
   Flights_Kiwi: api.tequila.kiwi.com/v2
   Kiwi_api_call: search
@@ -15,7 +15,8 @@ data:
   Seats_api_update: update-seats
   Transactions: transactionservice
   Transactions_Port: "82"
-  Transactions_api: add-transaction
+  Transactions_api: get-transactions
+  Transactions_api_add: add-transaction
   Transactions_api_get: get-transaction
   Users: userservice
   Users_Port: "83"
@@ -23,6 +24,7 @@ data:
   Users_api_add: add-user
   Users_api_update: update-user
   Users_api_delete: delete-user
+  Check_User: check-user
   Payments: payment
   Payments_Port: "84"
   Payments_api: api/p1/payments
@@ -34,3 +36,7 @@ data:
   MONGO_DB: transaction-db
   USER_MONGO_DB: user-db
   SEATING_MONGO_DB: seating-db
+  KUBERNETES_PORT: "85"
+  SEATS_DISPLAY_API: get-seating
+  ORDER_API: new-order
+  AGGREGATOR: aggregator

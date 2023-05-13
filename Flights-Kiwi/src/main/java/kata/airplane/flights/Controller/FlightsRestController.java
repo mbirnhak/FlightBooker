@@ -24,16 +24,6 @@ public class FlightsRestController {
     public List<Flights> getFlights(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date) {
         List<Flights> flight_list = service.getAllFlights(fly_from, fly_to, date);
         return flight_list;
-
-        // String output = "";
-        // int counter = 1;
-
-        // for(Flights flight : flight_list){
-        //     output = output + "FLIGHT " + counter + ":\n" + "FLIGHT INFO: " + flight.toString() + "\n\n";
-        //     counter ++;
-        // }
-
-        // return output;
     }
 
     //can be used to choose flight based on flight number and price

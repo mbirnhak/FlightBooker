@@ -74,11 +74,6 @@ public class AggregatorRestController {
     public Flights findFlight(@PathVariable String fly_from, @PathVariable String fly_to, @PathVariable String date, @PathVariable Integer flight_no, @PathVariable Integer price){
         Flights flight = flightservice.getFlightBySpecifics(fly_from, fly_to, date, flight_no, price);
         return flight;
-
-        // if(flight == null){
-        //     return "THE FLIGHT DOESN'T EXIST";
-        // }
-        // return flight.toString();
     }
 
     @Autowired

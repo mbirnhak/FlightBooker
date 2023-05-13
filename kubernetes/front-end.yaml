@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+  labels:
+    app.kubernetes.io/name: front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: front
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: front
+    spec:
+      containers:
+      - name: front
+        image: ${APP_USER}/front-end:v1
+        env:
+          - name: AGGREGATOR
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: AGGREGATOR
+          - name: KUBERNETES_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: KUBERNETES_PORT
+          - name: Users_api_add
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users_api_add
+          - name: Users_api_get
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Users_api_get
+          - name: Check_User
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Check_User
+          - name: Flights_api
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Flights_api
+          - name: SEATS_DISPLAY_API
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: SEATS_DISPLAY_API
+          - name: ORDER_API
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: ORDER_API
+          - name: Transactions_api_get
+            valueFrom:
+              configMapKeyRef:
+                name: flight-app-config
+                key: Transactions_api_get
+        ports:
+        - containerPort: 8090
+          name: rest-port 
+        resources:
+          limits:
+            memory: "256Mi"
+          requests:
+            memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-service
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: front
+  ports:
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 8090
+      targetPort: rest-port
+      nodePort: 30101  #This is what we need to poke in goodle cloud

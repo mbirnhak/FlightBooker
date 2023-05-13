@@ -17,18 +17,6 @@ public class SeatsService {
 
     public String[][] DisplaySeats(String fly_from, String fly_to, String date, Integer flight_no, Integer price, Integer available_seats){
 
-        // String urlName = System.getenv("Flights") != null ? System.getenv("Flights") : "localhost";
-        // String port = System.getenv("Flights_Port") != null ? System.getenv("Flights_Port") : "8089";
-        // String api = System.getenv("Flights_api") != null ? System.getenv("Flights_api") : "flights";
-        // String url = String.format("http://%s:%s/%s/%s/%s/%s/%d/%d", urlName, port, api, fly_from, fly_to, date, flight_no, price);
-        // RestTemplate restTemplate = new RestTemplate();
-        // Flights flight = restTemplate.getForObject(url, Flights.class);
-        // if(flight == null){
-        //     return "THE FLIGHT DOESN'T EXIST";
-        // }
-
-
-        //Integer available_seats = flight.getAvailableSeats();
         String[][] seat_arr = new String[(int) Math.ceil((double) available_seats/6)][6];
 
         String url2Name = System.getenv("Seats") != null ? System.getenv("Seats") : "localhost";
@@ -72,28 +60,8 @@ public class SeatsService {
             restTemplate3.postForEntity(url3, request3, String.class);
 
             return seat_arr;
-            // StringBuilder sb = new StringBuilder();
-            // for (Object[] row : seat_arr) {
-            //     sb.append("[");
-            //     for (Object element : row) {
-            //         sb.append(element).append(", ");
-            //     }
-            //     sb.setLength(sb.length() - 2); // Remove the last ", " separator
-            //     sb.append("]\n"); // Add a newline character at the end of each row
-            // }
-            // return sb.toString();
         }
 
         return seat_transactions.getSeats_display();
-        // StringBuilder sb = new StringBuilder();
-        // for (Object[] row : seat_transactions.getSeats_display()) {
-        //     sb.append("[");
-        //     for (Object element : row) {
-        //         sb.append(element).append(", ");
-        //     }
-        //     sb.setLength(sb.length() - 2); // Remove the last ", " separator
-        //     sb.append("]\n"); // Add a newline character at the end of each row
-        // }
-        // return sb.toString();
     }
 }

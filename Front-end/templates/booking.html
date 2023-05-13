@@ -211,56 +211,51 @@
     </table>
 	<h2>Seat Availability</h2>
 	{% if result2 %}
-	<div class="seats-container">
-	  <table>
-		<thead>
-		  <tr>
-			<th>Row</th>
-			<th colspan="{{ result2.0|length }}">Seats</th>
-		  </tr>
-		</thead>
-		<tbody>
+	  <form id="seats-form">
+		<div class="seats-container">
 		  {% for row in result2 %}
-			<tr>
-			  <td>{{ loop.index }}</td>
+			<div class="seats-row">
 			  {% for seat in row %}
-				{% if seat == 'X' %}
-				  <td>X</td>
-				{% else %}
-				  <td><label for="{{ loop.index }}-{{ seat }}"><input type="checkbox" id="{{ loop.index }}-{{ seat }}" name="seats[]" value="{{ loop.index }}-{{ seat }}">{{ seat }}</label></td>
-				{% endif %}
+				<div class="seat-box">
+				  {% if seat == 'X' %}
+					X
+				  {% else %}
+					<label for="{{ seat }}">
+					  <input type="checkbox" id="{{ seat }}" name="seats[]" value="{{ seat }}">
+					  {{ seat }}
+					</label>
+				  {% endif %}
+				</div>
 			  {% endfor %}
-			</tr>
+			</div>
 		  {% endfor %}
-		</tbody>
-	  </table>
-	</div>
-	<div id="seats-selected"></div>
-	<button><a href="/route_payment" onclick="submitForm()">Proceed to Payment</a></button>
+		</div>
+		<div id="seats-selected"></div>
+		<button type="button" onclick="submitForm()">Proceed to Payment</button>
+	  </form>
 	{% else %}
-	<div class="no-seats">
-	  <p>No seats available</p>
-	</div>
+	  <div class="no-seats">
+		<p>No seats available</p>
+	  </div>
 	{% endif %}
 	
 	<script>
-	  function submitForm(event) {
-		event.preventDefault();
+	  function submitForm() {
 		var form = document.getElementById("seats-form");
 		var checkedBoxes = form.querySelectorAll('input[type="checkbox"]:checked');
 		if (checkedBoxes.length === 0) {
 		  alert("Please select at least one seat");
 		} else {
-		  var selectedSeats = [];
-		  checkedBoxes.forEach(function(checkbox) {
-			selectedSeats.push(checkbox.value);
-		  });
-		  localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
-	  
-		  // Redirect to route_payment
-		  window.location.href = "/route_payment";
+			var selectedSeats = [];
+			checkedBoxes.forEach(function(checkbox) {
+				selectedSeats.push(checkbox.value);
+			});
+			localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+			
+			// Redirect to route_payment
+			window.location.href = "/route_payment";
+			}
 		}
-	  }
 	
 	  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 	  checkboxes.forEach(function(checkbox) {

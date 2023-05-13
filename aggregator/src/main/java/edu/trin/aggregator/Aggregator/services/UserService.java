@@ -42,7 +42,7 @@ public class UserService {
     public Boolean checkUser(String username, String password){
         String urlName = System.getenv("Users") != null ? System.getenv("Users") : "localhost";
         String port = System.getenv("Users_Port") != null ? System.getenv("Users_Port") : "8083";
-        String api = System.getenv("Users_check") != null ? System.getenv("Users_check") : "check-user";
+        String api = System.getenv("Check_User") != null ? System.getenv("Check_User") : "check-user";
         String url = String.format("http://%s:%s/%s/%s/%s", urlName, port, api, username, password);
         RestTemplate restTemplate = new RestTemplate();
         Boolean response = restTemplate.getForObject(url,Boolean.class);

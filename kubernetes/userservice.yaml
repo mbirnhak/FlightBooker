@@ -2,28 +2,32 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: transactionservice
-  name: transactionservice
+    app: userservice
+  name: userservice
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: transactionservice
-  strategy: {}
+      app: userservice
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
-        app: transactionservice
+        app: userservice
     spec:
       containers:
-      - name: transactionservice
-        image: ${APP_USER}/transactionservice:v1
+      - name: userservice
+        image: ${APP_USER}/userservice:v1
         env:
-            - name: MONGO_DB
+            - name: USER_MONGO_DB
               valueFrom:
                 configMapKeyRef:
                   name: flight-app-config  
-                  key: MONGO_DB
+                  key: USER_MONGO_DB
             - name: MONGO_HOST
               valueFrom:
                 configMapKeyRef:
@@ -31,29 +35,30 @@ spec:
                   key: MONGO_HOST
             - name: MONGO_PORT
               valueFrom:
-                  configMapKeyRef:
-                    name: flight-app-config 
-                    key: MONGO_PORT
+                configMapKeyRef:
+                  name: flight-app-config 
+                  key: MONGO_PORT 
         ports:
-        - containerPort: 8082
+        - containerPort: 8083
           name: rest-port
         resources:
           limits:
             memory: "256Mi"
           requests:
-            memory: "128Mi"   
+            memory: "128Mi"
+        
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: transactionservice
+  name: userservice
   labels:
-    app: transactionservice
+    app: userservice
 spec:
   type: ClusterIP
   selector:
-    app: transactionservice
+    app: userservice
   ports:
   - name: rest
-    port: 82
+    port: 83
     targetPort: rest-port
