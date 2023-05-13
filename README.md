@@ -58,7 +58,7 @@
 
 
 ## Diagram:
-<img width="919" alt="Screenshot 2023-04-29 at 3 04 54 PM" src="https://user-images.githubusercontent.com/123829531/235320232-fad47d85-62d2-4ba0-9439-4e17200d48e1.png">
+<img width="1100" alt="Diagram" src="https://github.com/mbirnhak/Kata-Project/assets/123829531/2f85d5de-e2ec-4640-bc33-9b8f16e42112">
   
 ## To Download the App
 `git clone https://github.com/mbirnhak/Kata-Project.git`
@@ -75,7 +75,7 @@
 3. Upload the kubernetes folder to your cluster
 4. Run the following command:
 `cd kubernetes && chmod +x apply-yaml.sh && bash apply-yaml.sh DOCKER_HUB_USERNAME`
-5. 
+5. Open a hole in the firewall:
 `gcloud compute firewall-rules create flight-app-node-port --allow tcp:30101`
 6. Get an External-IP of one of the nodes in your cluster:
 `kubectl get nodes -o wide`
