@@ -63,11 +63,14 @@
 ## To Download the App
 `git clone https://github.com/mbirnhak/Kata-Project.git`
 
-## To Build the App
+## To Build the App (May take a few minutes depending on your internet connection)
 `cd Kata-Project && cd kubernetes && chmod +x build-app.sh && bash build-app.sh build DOCKER_HUB_USERNAME`
 
 ## To Deploy the App on Kubernetes
 `chmod +x apply-yaml.sh && bash apply-yaml.sh DOCKER_HUB_USERNAME`
+
+## To Access the UI
+Go to http://localhost:30101/
 
 ## To Deploy the App on GKE
 1. Once downloaded locally and built (see section above "To Build the App") complete the following
@@ -79,4 +82,4 @@
 `gcloud compute firewall-rules create flight-app-node-port --allow tcp:30101`
 6. Get an External-IP of one of the nodes in your cluster:
 `kubectl get nodes -o wide`
-7. Finally, access the UI at http://External-IP:30101
+7. Finally, access the UI at http://{External-IP}:30101/
